@@ -1,0 +1,26 @@
+EmployeeID,Department,Age,Gender,JobLevel,EducationLevel,YearsOfExperience,Salary,PerformanceScore,SatisfactionScore,OvertimeHours,TrainingHours,ProjectsCompleted,TeamSize,RemoteWorkDays,AttendanceRate,PromotionCount,OfficeLocation
+EMP_001,Operations,30,Female,Mid,High School,5,69699,5,8,18,31,19,8,3,0.9,1,New York
+EMP_002,Marketing,41,Female,Senior,High School,19,135822,1,5,8,81,5,8,3,0.893,5,Austin
+EMP_003,Engineering,26,Female,Entry,High School,1,63380,3,4,18,44,18,7,3,0.906,0,San Francisco
+EMP_004,Operations,24,Female,Entry,High School,1,47714,3,6,18,98,19,5,0,0.9,0,Austin
+EMP_005,Engineering,32,Male,Entry,Master,8,67437,1,7,8,61,17,7,3,0.979,2,Chicago
+EMP_006,Finance,35,Female,Mid,Bachelor,10,94839,5,3,19,11,7,7,0,0.866,3,Remote
+EMP_007,Sales,37,Male,Senior,Bachelor,13,129178,2,9,9,44,8,8,4,0.992,4,New York
+EMP_008,Sales,36,Female,Mid,Bachelor,11,86415,1,10,11,59,19,14,5,0.915,3,Chicago
+EMP_009,Sales,26,Male,Mid,High School,1,61220,4,1,13,46,3,9,2,0.896,0,Chicago
+EMP_010,Finance,35,Male,Mid,Bachelor,12,101017,4,7,14,12,10,9,1,0.885,4,San Francisco
+EMP_011,Engineering,27,Male,Entry,High School,2,48883,5,7,17,64,9,14,0,0.92,0,San Francisco
+EMP_012,Engineering,26,Male,Mid,Bachelor,3,91887,2,6,19,23,13,4,5,0.872,1,San Francisco
+EMP_013,Engineering,42,Other,Senior,Master,20,167643,1,10,5,40,7,10,5,0.954,5,San Francisco
+EMP_014,Sales,25,Female,Entry,High School,3,49753,2,9,9,79,16,6,2,0.989,1,Chicago
+EMP_015,Engineering,53,Female,Executive,High School,31,322405,3,3,16,22,14,10,5,0.975,5,New York
+EMP_016,Engineering,29,Female,Entry,Master,7,67078,4,4,6,68,9,3,5,0.89,2,New York
+EMP_017,Engineering,37,Male,Entry,Master,13,73987,2,8,18,7,4,8,2,0.883,4,New York
+EMP_018,Sales,23,Female,Entry,Bachelor,1,51201,2,9,6,82,16,10,0,0.903,0,Chicago
+EMP_019,Finance,31,Female,Entry,Master,9,69169,2,10,6,72,3,7,0,0.905,3,Remote
+EMP_020,Operations,32,Male,Mid,High School,8,79567,4,7,16,93,7,12,0,0.998,2,San Francisco
+EMP_021,Marketing,22,Male,Entry,Master,1,48959,3,7,1,17,5,5,3,0.937,0,San Francisco
+EMP_022,Operations,22,Female,Entry,Bachelor,1,43095,2,9,4,97,8,12,4,0.916,0,San Francisco
+EMP_023,Engineering,50,Female,Executive,Master,26,296462,1,5,7,58,12,11,0,0.988,5,San Francisco
+EMP_024,HR,24,Female,Mid,High School,1,55011,5,6,12,19,17,7,1,0.868,0,Chicago
+EMP_025,Finance,31,Male,Entry,PhD,8,56369,3,5,15,60,19,8,0,0.939,2,Remote
