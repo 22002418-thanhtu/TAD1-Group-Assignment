@@ -1,0 +1,745 @@
+---
+title: "TAD - Group 1 - Group Assignment"
+author: |-
+  Do Duc Trung - 22166893,
+  Le Hong Thanh Tu - 22166855
+date: "2026-04-03"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+GitHub link: https://github.com/22002418-thanhtu/TAD1-Group-Assignment
+
+# Question 1
+
+## a)
+
+Load dataset
+ 
+```{r}
+hrdata <- read.csv("group1.csv")
+dim(hrdata)
+```
+
+The dataset has 25 rows and 18 columns.
+
+```{r}
+str(hrdata) 
+```
+
+## b)
+
+Numeric variables are Age, Years of Experience, Salary, Performance Score, Satisfaction Score, Overtime Hours, Training Hours, Projects Completed, Team Size, Remote Work Days, Attendance Rate, Promotion Count.
+
+**Summary statistics**
+
+```{r}
+summary(hrdata$Age)
+summary(hrdata$YearsOfExperience)
+summary(hrdata$Salary)
+summary(hrdata$PerformanceScore)
+summary(hrdata$SatisfactionScore)
+summary(hrdata$OvertimeHours)
+summary(hrdata$TrainingHours)
+summary(hrdata$ProjectsCompleted)
+summary(hrdata$TeamSize)
+summary(hrdata$RemoteWorkDays)
+summary(hrdata$AttendanceRate)
+summary(hrdata$PromotionCount)
+```
+
+**Box plot**
+
+```{r}
+boxplot(hrdata$Age,main="Age")
+boxplot(hrdata$YearsOfExperience,main="Years Of Experience")
+boxplot(hrdata$Salary,main="Salary")
+boxplot(hrdata$PerformanceScore, main="Performance Score")
+boxplot(hrdata$SatisfactionScore, main="Satisfaction Score")
+boxplot(hrdata$OvertimeHours, main ="Overtime Hours")
+boxplot(hrdata$TrainingHours, main ="Training Hours")
+boxplot(hrdata$ProjectsCompleted, main = "Projects Completed")
+boxplot(hrdata$TeamSize, main="Team Size")
+boxplot(hrdata$RemoteWorkDays,main="Remote Work Days")
+boxplot(hrdata$AttendanceRate,main="Attendance Rate")
+boxplot(hrdata$PromotionCount, main="Promotion Count")
+```
+
+We can see that the variables Age and Years of Experience have an outlier for each. Regarding salary, it has 3 outliers. On the other hand, the remaining numeric variables do not have outliers. 
+
+## c)
+
+Key numeric variables are age, salary, performance score, satisfaction score, and years of experience.
+
+**Histograms for key numeric variables and descriptions about their distributions**
+
+**Age**
+
+* Histogram of Age
+
+```{r}
+hist(hrdata$Age, col="lightblue", xlab="Age", breaks=10, main="Distribution of Age")
+```
+
+* Description of Age
+
+The distribution of age is right-skewed. Most of the workers are between 20 and 35 years old. After that, the number of workers sorted by age dropped steadily. The youngest workers are 20 years old, while the most mature workforce is 55 years old.
+
+**Salary**
+
+* Histogram of Salary
+
+```{r}
+hist(hrdata$Salary, col="lightblue", main="Distribution of Salary", xlab="salary", breaks=15)
+```
+
+* Description of Salary
+
+The distribution of salary is positively skewed. Most of the employment salaries were from \$50,000 to \$100,000. After \$200,000, no frequency occurs. However, when the salary reached \$290,000, two outliers emerged with exceptionally high salaries. The salary range is from \$40,000 to \$350,000.
+
+**Performance Score**
+
+* Histogram of Performance Score
+
+```{r}
+hist(hrdata$PerformanceScore, col="lightblue", 
+main="Distribution of Performance Score", 
+xlab="Performance Score", breaks=5)
+```
+
+* Description of Performance Score
+
+The distribution of performance scores is positively skewed. Half of the employment performance has a score of 1 or 2. There are 8 employees who reached 4 and 5 performance scores. The performance score ranges from 1 to 5.
+
+**Satisfaction Score**
+
+* Histogram of Satisfaction Score
+
+```{r}
+hist(hrdata$SatisfactionScore, col="lightblue", 
+main="Distribution of Satisfaction Score", 
+xlab="Satisfaction Score", breaks=10)
+```
+
+* Description of Satisfaction Score
+
+The distribution of satisfaction scores is left-skewed. Most of the employees have a satisfaction score from 6 to 10. That means most employees are satisfied. There are 5 dissatisfied employees, with scores from 1 to 4. And some employees have a neutral opinion with a score of 5.
+
+**Years of Experience**
+
+* Histogram of Years of Experience
+
+```{r}
+hist(hrdata$YearsOfExperience, col="lightblue", 
+main="Distribution of Years of Experience", 
+xlab="Years of Experience", breaks=10)
+```
+
+* Description of Years of Experience
+
+The distribution of years of experience is positively skewed. Most of the employment experience years were from 1 to 10 years. There is a gap between 20 and 25 years of experience. From 25 to 35, there are two outliers with a high year of experience. The years of experience range from 0 to 35.
+
+**Examining correlations between key numeric variables:**
+
+* Correlations between Salary and Satisfaction Score
+
+```{r}
+cor(hrdata$Salary, hrdata$SatisfactionScore)
+```
+
+* Correlations between Salary and Years of Experience
+
+```{r}
+cor(hrdata$Salary, hrdata$YearsOfExperience)
+```
+
+* Correlations between Salary and Age
+
+```{r}
+cor(hrdata$Salary, hrdata$Age)
+```
+
+* Correlations between Salary and Performance Score
+
+```{r}
+cor(hrdata$Salary, hrdata$PerformanceScore)
+```
+
+* Correlations between Age and Satisfaction Score
+
+```{r}
+cor(hrdata$Age, hrdata$SatisfactionScore)
+```
+
+* Correlations between Age and Years of Experience
+
+```{r}
+cor(hrdata$Age, hrdata$YearsOfExperience)
+```
+
+* Correlations between Age and Performance Score
+
+```{r}
+cor(hrdata$Age, hrdata$PerformanceScore)
+```
+
+* Correlations between Performance Score and Satisfaction Score
+
+```{r}
+cor(hrdata$PerformanceScore, hrdata$SatisfactionScore)
+```
+
+* Correlations between Performance Score and Years of Experience
+
+```{r}
+cor(hrdata$PerformanceScore, hrdata$YearsOfExperience)
+```
+
+* Correlations between Years of Experience and Satisfaction Score
+
+```{r}
+cor(hrdata$YearsOfExperience, hrdata$SatisfactionScore)
+```
+
+From the above correlation, there are three pairs of numeric variables that have high correlation, which are age vs. salary, years of experience vs. salary, and years of experience vs. age. All of the pairs have positive relationships.
+
+## d)
+
+**Scatter plot:**
+
+According to the above correlation, three pairs of variables have high correlation values. The 3 pairs are used to draw 3 scatter plots.
+
+* Scatter plot: Age and Salary
+
+```{r}
+plot(x = hrdata$Age, y=hrdata$Salary,
+xlab="Age", ylab="Salary",
+main="Scatter plot: Age and Salary")
+```
+
+* Scatter plot: Years of Experience and Salary
+
+```{r}
+plot(x=hrdata$YearsOfExperience, y=hrdata$Salary,
+xlab="Years of Experience", ylab="Salary",
+main="Scatter plot: Years of Experience and Salary")
+```
+
+* Scatter plot: Years of Experience and Age
+
+```{r}
+plot(x=hrdata$YearsOfExperience, y=hrdata$Age,
+xlab="Years of Experience", ylab="Age",
+main="Scatter plot: Years of Experience and Age")
+```
+
+**Box plot:**
+
+Box plots are drawn using the key numeric variables and categorize them by the 3 factor variables, which are Gender, Job Levels, and Departments. The purpose of categories is to compare the differences between groups.
+
+* Categorize by Gender
+
+```{r}
+# Gender
+boxplot(Age~Gender, hrdata, horizontal=TRUE, main="Box plot: Age Grouped by Gender")
+boxplot(Salary~Gender,horizontal=TRUE, hrdata, main="Box plot: Salary Grouped by Gender")
+boxplot(PerformanceScore~Gender,horizontal=TRUE,
+xlab="Performance Score", ylab="Gender", hrdata,
+main="Box plot: Performance Score Grouped by Gender")
+boxplot(SatisfactionScore~Gender,horizontal=TRUE,
+xlab="Satisfaction Score", ylab="Gender", hrdata,
+main="Box plot: Satisfaction Score Grouped by Gender")
+boxplot(YearsOfExperience~Gender,horizontal=TRUE,
+xlab="Years Of Experience", ylab="Gender", hrdata,
+main="Box plot: Years of Experience Grouped by Gender")
+```
+
+* Categorize by Departments.
+
+```{r}
+# Departments
+boxplot(Age~Department, hrdata, main="Box plot: Age Grouped by Departments")
+boxplot(Salary~Department, hrdata,
+main="Box plot: Salary Grouped by Departments")
+boxplot(PerformanceScore~Department,ylab="Performance Score", hrdata,
+main="Box plot: Performance Score Grouped by Departments")
+boxplot(SatisfactionScore~Department,ylab="Satisfaction Score", hrdata,
+main="Box plot: Satisfaction Score Grouped by Departments")
+boxplot(YearsOfExperience~Department,ylab="Years Of Experience", hrdata,
+main="Box plot: Years of Experience Grouped by Departments")
+```
+
+* Categorize by Job Levels.
+
+```{r}
+# Job Levels
+boxplot(Age~JobLevel, hrdata, main="Box plot: Age Grouped by Job Levels")
+boxplot(Salary~JobLevel, hrdata,
+main="Box plot: Salary Grouped by Job Levels")
+boxplot(PerformanceScore~JobLevel,ylab="Performance Score", hrdata,
+main="Box plot: Performance Score Grouped by Job Levels")
+boxplot(SatisfactionScore~JobLevel,ylab="Satisfaction Score", hrdata,
+main="Box plot: Satisfaction Score Grouped by Job Levels")
+boxplot(YearsOfExperience~JobLevel,ylab="Years Of Experience", hrdata,
+main="Box plot: Years of Experience Grouped by Job Levels")
+```
+
+## e)
+
+**Summary of the key characteristics of the workforce.**
+
+**Demographics and Experience:** Most of the workforce is between 20 and 35 years old, demonstrating a young workforce. Therefore, most of the workforce is in the early stage of their career, with an average experience year of 8.6 years. There are two outliers in the experience years, with the values of 26 and 31. They are positioned at the executive level.
+
+**Compensation and Job Level:** The higher correlation between experience years and salary and between age and salary shows that the compensation of the workforce is tied to seniority. The popular salary range is from \$50,000 to \$100,000. The average salary is \$95,127, which is significantly higher than the median of \$69,169. This happens due to the two outliers in salary with salaries above \$290,000.
+
+**Performance and Satisfaction:** Interestingly, the workforce is generally satisfied but not highly performing. The distribution of satisfaction scores is negative. The most popular score range is from 6 to 10. Regarding performance, its distribution is positive. The most frequent scores are 1 and 2. This creates a paradox in the workplace.
+
+**Notable Departments and Job Level:**
+
+* Job Level: Executive is an extreme outlier group, characterized by higher age, experience years, and salary compared to the other job levels.
+
+* Departments:
+
+  * Sales is the department with the highest satisfaction score.
+  
+  * HR is the department that has the highest performance.
+  
+  * Marketing is the group that receives an average higher salary and has a higher level of experience than the other groups.
+
+**Reflection of Question 1**
+
+In this question, we did correctly all of the questions. To ensure they correctly, we check the number of variables and their name to avoid potential missing and errors. 
+
+
+# Question 2 
+
+## a)
+
+**Selection: Comparing salary between entry and mid-level**
+
+Explanation: We want to investigate whether there is a statistically significant difference in salary between entry and mid-level positions, which helps to evaluate financial progression when promoting in the career ladder. 
+
+**Expectation:** 
+
+It is expected that there will be a difference in salary for different levels
+
+**Hypothesis statement:** 
+
+$\mu_{entry}$ is the mean salary of an entry-level worker.
+
+
+$\mu_{mid}$ is the mean salary of a mid-level worker.
+
+
+* $H_0:  \mu_{mid} - \mu_{entry} = 0$
+
+
+* $H_A: \mu_{entry} - \mu_{entry} \neq 0$
+
+## b)
+
+```{r}
+rm(mean)
+# Filter to Mid and Entry level 
+data_subset <- subset(hrdata, JobLevel == "Mid" | JobLevel == "Entry")
+
+#Transform to factor and arrange Mid and Level
+data_subset$JobLevel <- factor(data_subset$JobLevel, levels = c("Mid", "Entry"))
+
+# Check the boxplot to observe the variance
+boxplot(Salary ~ JobLevel,data = data_subset)
+aggregate(Salary ~ JobLevel,data = data_subset,sd) #Variance does not seem to be different
+table(data_subset$JobLevel) #the dataset is small, use permutation
+
+
+# Permutation Test
+perm_diffs = replicate(1000, {
+  joblevel.sim = sample(data_subset$JobLevel)
+  -diff(aggregate(Salary ~ joblevel.sim, data_subset, mean)$Salary)
+})
+
+# Draw Histogram 
+hist(perm_diffs, 
+     main = "Permutation Distribution of Mean Salary Difference", 
+     xlab = "Simulated Mean Differences (Mid - Entry)")
+
+test <- t.test(Salary ~ JobLevel, data = data_subset, var.equal = TRUE)
+test
+test$statistic
+test$parameter
+test$p.value
+```
+
+Because $p-value=0.001 < \alpha=0.05$, we reject $H_0$. Therefore, salary of Entry level is different from mid level.
+
+## c)
+
+```{r} 
+# Confidence interval 
+set.seed(123)
+boot =replicate(1000,{
+  id.mid = which(data_subset$JobLevel=="Mid")
+  id.entry=which(data_subset$JobLevel =="Entry")
+  
+  s.mid = sample(id.mid, replace =TRUE)
+  s.entry = sample(id.entry,replace=TRUE)
+  
+  mean(data_subset$Salary[s.mid]) - mean(data_subset$Salary[s.entry])
+})
+
+hist(boot, main="Bootstrap Distribution of Mean Difference (Mid - Entry)", xlab="Mean Difference") 
+
+# Calculate 95% Confidence Interval
+CI = quantile(boot, c(0.025, 0.975))
+cat("\n--- 95% Bootstrap Confidence Interval ---\n")
+print(CI)
+
+# Calculate Effect Size 
+# Subset salary data for the two groups
+sal_mid <- subset(data_subset, JobLevel == "Mid")$Salary
+sal_entry <- subset(data_subset, JobLevel == "Entry")$Salary
+
+# Calculate n, mean, and standard deviation (sd)
+n_mid <- length(sal_mid)
+n_entry <- length(sal_entry)
+
+mean_mid <- mean(sal_mid)
+mean_entry <- mean(sal_entry)
+
+sd_mid <- sd(sal_mid)
+sd_entry <- sd(sal_entry)
+
+# Calculate pooled standard deviation 
+pooled_sd <- sqrt(((n_mid - 1) * sd_mid^2 + (n_entry - 1) * sd_entry^2) / (n_mid + n_entry - 2))
+
+# Calculate Cohen's d 
+cohens_d <- (mean_mid - mean_entry) / pooled_sd
+cohens_d
+```
+
+$\Rightarrow$ Cohen's d value is 1.73.
+
+## d)
+
+```{r}
+boxplot(Salary ~ JobLevel,data = data_subset)
+```
+
+**Interpretation**
+
+The median salary of mid-level is higher than that of entry-level
+
+The interquartile range for mid-level salaries is above the entry-level salary.
+
+There are no visible outlier groups, suggesting consistent payment in each level.
+  
+## e)
+
+At $\alpha=0.05 > p-value = 0.001$, we reject the null hypothesis and conclude that there is a difference in salaries between entry and mid-level employees, and the mid-level workers are paid more than those in entry-level (Right expectation)
+
+**Compensation strategy explanation**
+
+The significant difference between the mean salary of mid-level and entry-level ($\$79,956.88 -\$57,252.08 = \$22,704.8$) indicates that the company has higher salaries for higher-level employees. As a result, employees may want to commit to and develop their career path in the company. 
+
+**Reflection for Question 2**
+
+In exercise 2c, we had forgotten to use bootstrapping to find 95% confident interval and used the result from the t-test in the previous questions. However, we realized it when checking the code in the weekly worksheet, then adding it later.
+
+# Question 3
+
+## a)
+ 
+```{r}
+contingency_table <- table(hrdata$Gender, hrdata$JobLevel)
+contingency_table
+```
+
+**State the hypothesis**
+
+* $H_0$: Gender and Job Level are independent
+* $H_A$: Gender and Job Level are not independent
+
+**Expectation**
+
+Gender and Job Level are not independent, because we see that there seem to be more males in the higher job levels than females.
+
+## b)
+
+```{r}
+chi_sq_test <- chisq.test(contingency_table)
+chi_sq_test
+```
+
+Chi square = 9.4048, degree of freedom = 6 and p value = 0.15 < 0.05. So, we fail to reject $H_0$. Therefore, Gender and Job Level are independent.
+
+As the sample is quite small, we do a permutation and chi-square test again to ensure the outcome.
+
+```{r}
+chi_sq_perm <- chisq.test(contingency_table, simulate.p.value = TRUE, B = 10000)
+chi_sq_perm
+```
+
+The p-value after permutation is 0.19. $\Rightarrow$ Gender and Job Level are independent.
+
+## c)
+
+```{r}
+
+barplot(contingency_table, 
+        main = "Stacked Bar Chart: Gender vs. Job Level",
+        xlab = "Job Level", 
+        ylab = "Count (Frequency)",
+              col = c("lightpink", "lightblue", "yellow"), 
+        legend = rownames(contingency_table),
+        beside = FALSE)
+```
+
+
+## d)
+
+Because $p-value=0.15 > \alpha=0.05$ $\Rightarrow$ fail to reject $H_0$ $\Rightarrow$ Gender and Job level are independent, which is opposed to our expectation.
+
+This reveals that the Job Levels in the company are not related to Gender. As a result, it shows gender diversity and equity in the company's structure. 
+
+**Reflection for Question 3**
+
+We do the code right. To check the code, we first check the general method for analytics, then we check the variable names to ensure they are correct. 
+
+# Question 4
+
+## a)
+
+*lm()* is used to find the coefficients of a regression model.
+
+**Illustration of code**
+
+```{r}
+fit <- lm(Salary~YearsOfExperience, data = hrdata)
+print(fit)
+```
+
+**Estimated model**
+
+$$\hat{Salary}=27000 + 7922 \times YearsOfExperience$$
+
+**Visualization of the linear regression line**
+
+```{r}
+plot(Salary~YearsOfExperience, data = hrdata, xlab="Years Of Experience", 
+     main="Regression line: Years Of Experience and Salary " )
+abline(fit, col=2, lwd=2)
+```
+
+**Expectation**
+
+It is expected that the year of experience will have a significant effect on explaining salary because of the high correlation between them. The positive slope of the regression line shows that years of experience have a positive effect on salary.
+
+## b)
+
+**Interpretation of intercept**
+
+In the context of HR compensation, the intercept shows that the predicted salary of an employee with zero years of experience is \$27,000. The value is perceived as the salary for an entry-level job.
+
+**Interpretation of slope:**
+
+If years of experience increase by 1 unit, then salary is predicted to increase by \$7,922. It is noticed by HR that each employee's salary increases by \$7,922 on average each year.
+
+
+## c)
+
+**Hypothesis testing on the slope**
+
+**Hypothesis**
+
+* $H_0: \beta_1=0$
+* $H_A: \beta_1 \ne 0$
+
+To test the hypothesis $H_0: \beta_1=0$, the permutation approach was used because the sample is small.
+
+**Illustration of code:**
+
+```{r}
+# Create a bootstrap distribution of b where the null hypothesis is true (b=0)
+x4= replicate(1000, {
+  # shuffle one variable to force population b = 0
+  YearsOfExperience.perm = sample(hrdata$YearsOfExperience) 
+  fit = lm(Salary ~ YearsOfExperience.perm, data=hrdata) # fit the straight line model
+  coef(fit)[2] # return the fitted b
+})
+
+# examine the distribution of b, when the population b = 0
+hist(x4, col="lightblue", main="", xlab="")
+
+# compute the slope of the original data
+slope = coef(fit)[2] # extract the slope (b) from the fitted model
+# compute the chance of getting the data b, if the population b = 0
+pValue = mean(x4 > slope) + mean(x4 < (-slope))
+cat("P-value equals",pValue)
+```
+
+**Conclusion:**
+
+```{r}
+if(pValue < 0.05){
+print("Reject Null hypothesis at 5% significant level.")} else{
+print("Fail to reject Null hypothesis  at 5% significant level.")}
+```
+
+Because the p-value ($=0$) is less than the significance level ($\alpha=5\%$). We reject the null hypothesis. There is sufficient evidence to prove that the linear regression is statistically significant. That means years of experience are a strong determinant in predicting salary. And this also confirms the expectation that the years of experience and salary have a positive effect on salary.
+
+## d)
+
+*summary()* is used to find the R-squared value.
+
+**Illustration of code**
+
+```{r}
+summary(fit)
+```
+
+**Result:** Multiple R-squared equals 0.8345.
+
+**Explanation:** Years of experience explained 83.45% of the salary. The high percentage of R-squared shows that years of experience are a strong indicator for predicting salary. The remaining percentage ($\approx 16.55\%$) shows that there are other unobserved variables affecting salary.
+
+## e)
+
+*predict()* is used to find the value of the predicted salary for an employee with 5 years of experience.
+
+**Illustration of code:**
+
+```{r}
+salary5y<-predict(fit, newdata = data.frame(YearsOfExperience=5))
+round(salary5y,0)
+```
+
+**Explanation:** Based on the regression model, the predicted salary for an employee with 5 years of experience is $66,609.
+
+**Practical implications for compensation strategy:** Standardize the salary payment.
+
+Based on the above result on the regression model, the company should have a salary framework for employment based on years of experience. The salary framework acts as a standard for calculating employee salaries based on years of experience. This framework ensures fair compensation for employees, for example, ensuring employees with the same years of experience receive similar salary levels. It also plays a crucial role in budget management, allowing managers to forecast payroll based on this framework. Moreover, this salary framework can be adjusted to fit the market conditions, especially in the case of a low employee retention ratio or difficulty in recruiting new staff.
+
+**Reflection for Question 4**
+
+We face difficulty and a longer progress in computing the p-value due to the small sample size. Instead of using the function *summary(fit)* to find the p-value, we need to simulate the sample and then compute the slope from the actual data to find the exact p-value in this sample.
+
+
+# Question 5
+
+## a)
+
+**Box plot** showing performance score distributions across all job levels
+
+```{r}
+boxplot(PerformanceScore~JobLevel,
+xlab="Job Level",
+ylab="Performance Score",
+main="Box plot: Performance Score across Job Levels",
+col=4:7, hrdata)
+```
+
+**Expectation**
+
+It is expected that at least one pair of job levels means is not equal. Because the medians for each job level in the box plot are different. As we can see, the mid-level has the highest performance score, while the senior-level has the lowest score. Hence, we expected that the difference in performance score between mid and senior levels would be most significant.
+
+## b)
+
+Hypothesis testing to determine whether the performance scores are the same across all job levels
+
+**Hypothesis:**
+
+* $H_0$: All means are equal for all categories.
+* $H_A$: At least one pair of means is not equal.
+
+To perform the test, the permutation approach was used because the sample was small.
+
+**Illustration of code:**
+
+```{r}
+x5b = replicate(1000,{
+# shuffling the category to force the population means to be equal for this simulation.
+joblv.perm = sample(hrdata$JobLevel)
+# compute the F statistic for the simulated data
+oneway.test(PerformanceScore ~ joblv.perm, data = hrdata, var.equal = TRUE)$statistic
+})
+
+# plotting the Distribution of F-statistics
+hist(x5b, main="Distribution of F-statistics")
+
+# Compute the F statistic for the original data
+Fstat = oneway.test(PerformanceScore ~ JobLevel, data = hrdata, var.equal = TRUE)$statistic
+cat("F-stattistic is", Fstat, "\n")
+# Compute the p-value
+pval=mean(x5b > Fstat)
+cat("p-value is", pval,"\n")
+# Conclusion
+if(pval < 0.05){
+print("Reject Null hypothesis at 5% significant level.")} else{
+print("Fail to reject Null hypothesis  at 5% significant level.")}
+```
+
+**Conclusion:**
+
+Because the p-value is less than the significance level ($\alpha=5\%$). We reject the null hypothesis. Therefore, the performance scores are different among job levels.
+
+## c)
+
+Because the F-test is significant, we conducted Tukey's HSD post-hoc test. The permutation approach was applied because the sample was small.
+
+The code first performs the simulation and keeps the maximum t-statistics for each combination of pairs of categories. Then, the distribution of maximum t-statistics is plotted. After that, we use the actual data to find the actual t-statistics. Then the results from these two stages are used to compare and verify the pair with a significant difference in Performance Score.
+
+**Illustration of code**
+
+```{r}
+rm(mean) # to remove any value with the name "mean"
+ns = table(hrdata$JobLevel)
+# Generate H0 distribution of t statistics
+# keeping the maximum for each combination of pairs of categories
+x_max_t = replicate(1000, {
+  joblv.perm = sample(hrdata$JobLevel) # Shuffle the categories
+  fit0 = aov(PerformanceScore ~ joblv.perm, data = hrdata) # ANOVA for MSE
+  MSE = summary(fit0)[[1]][2,3] # Extract the MSE
+  means = aggregate(PerformanceScore ~ joblv.perm, data = hrdata, mean)[,2] # Category means
+  
+  Ts = outer(means, means, "-")/sqrt(outer(1/ns,1/ns, "+")) # t-statistics
+  Ts = Ts/sqrt(MSE) # Scale by pooled standard deviation
+  max(abs(Ts)) # keep largest t statistic
+})
+
+# examine distribution of maximum t-statistics
+hist(x_max_t, col = "lightblue", main = "Distribution of Max T-statistics", xlab = "Max T")
+
+# Compute the t-statistic for the original data
+fit5 = aov(PerformanceScore ~ JobLevel, data = hrdata)
+MSE_actual = summary(fit5)[[1]][2,3] # Extract the MSE
+means_actual = aggregate(PerformanceScore ~ JobLevel, data = hrdata, mean)[,2]
+Ts_actual = outer(means_actual, means_actual, "-") / sqrt(outer(1/ns, 1/ns, "+"))
+Ts_actual = Ts_actual/sqrt(MSE_actual)
+print(Ts_actual)
+```
+
+The pair Senior - Mid has the highest t-statistic. It prefers that this pair differ significantly. To verify, we need to compute its p-value.
+
+```{r}
+pval_senmid<-mean(x_max_t > Ts_actual[3,4])
+cat("p-value of Senior-Mid pair is", pval_senmid)
+```
+
+The p-value of the pair Senior-Mid is lower than the significance level ($\alpha=5\%$). Therefore, we conclude that the Senior-Mid pair differs significantly in Performance Score. And this also confirms the expectation that the difference between the Mid and Senior levels is most significant.
+
+
+## d)
+
+**Interpretation of the findings**
+
+The performance among job levels is different. The mid-level has the best performance with a median score of 4. The senior-level has the lowest performance with a median score of 1. The entry-level has a median performance score of 2.5, which is the second-highest performance. And the executive's median performance score is 2.
+
+The most significant performance difference happened between the mid and senior levels. The Mid-level employment has the highest performance score, while the Senior-level employment has the lowest performance score. The test in parts 5b and 5c has proven the performance difference between the mid and senior levels. The Mid and Senior are the two consecutive levels. The significant difference between them can be due to a lack of skill when moving from mid-level to senior-level. Mid-level employees achieve high performance by focusing on specialized tasks and structured workflows. Mid-levels also receive guidance from the Senior. But when they promote to the senior level, they need to have more skills rather than specialized skills. Senior-level requires skills in leadership, mentoring staff, and planning strategy. The mismatch of new responsibilities and their previous specialized roles results in lower performance scores.
+
+**Reflection**
+
+In this question, we face the error with the code "*means = aggregate(PerformanceScore ~ joblv.perm, data = hrdata, mean)[,2]*" in the permutation stage. We found that the error happened because we had defined the "*mean*" value before, which made R confused. After all, R does not know which value to use between the value we have already defined or the average of each simulated group. Therefore, to fix this error, we write the code "*rm(mean)*" to remove the value for "*mean*" before running the simulation.
